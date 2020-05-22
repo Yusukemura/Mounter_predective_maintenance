@@ -32,23 +32,18 @@ print(df)
 # 結合したcsvを出力
 df.to_csv('{}.csv'.format(yesterday_str), encoding='utf_8')
 
-# csvの上から1行目から順にValueを読み取り、
-# TODO: 値が0以外の時のTIMEを始業時刻と定義する
-df = df.set_index('TIME')
-# reader = csv.reader('{}.csv'.format(yesterday_str))
-for x in df['Value']:
-    if x == 0:
-        continue
-    else:
-        print(x)
-        first_value = x
-        print(df.query('Value==12.5').index)
-        break
+# Valueが0より大きい値（列）を抽出
+value_not_zero = df[df[‘Value’] > 0]
 
-# TODO: 終業時刻も同様に定義
+# 抽出されたdfの最初の時間(始業時間)と最後の時間(終業時間)を抽出
+start_record = value_not_zero[0:1]
+end_record = value_not_zero[-2:-1]
 
+start_time = value_not_zero.iloc[0:1, 2:3]
+end_time = value_not_zero.iloc[-2:-1, 2:3]
 
-# TODO: 始業時刻、終業時刻から操業時間を読み取り(for, if)、
+# TODO: ②後のdfから操業時間の間のdfを抽出(df[‘始業’:’終業’])またはindexで指定。
+
 # TODO: 操業時間中に値が0(zero_count)の時がいくつあるか数える(count)
 
 
