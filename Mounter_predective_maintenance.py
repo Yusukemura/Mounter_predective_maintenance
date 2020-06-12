@@ -33,16 +33,16 @@ print(df)
 df.to_csv('{}.csv'.format(yesterday_str), encoding='utf_8')
 
 # Valueが0より大きい値（列）を抽出
-value_not_zero = df[df["Value"] > 0]
+value_not_zero = df[df[‘Value’] > 0]
 
 # 抽出されたdfの最初の時間(始業時間)と最後の時間(終業時間)を抽出
-start_record = value_not_zero["TIME"].values[0]
-end_record = value_not_zero['TIME'].values[-1]
+start_record = value_not_zero[0:1]
+end_record = value_not_zero[-2:-1]
 
+start_time = start_record['TIME']
+end_time = end_record['TIME']
 
 # TODO: ②後のdfから操業時間の間のdfを抽出(df[‘始業’:’終業’])またはindexで指定。
-
-target_df = df[(df['TIME'] >= start_record) & (df['TIME'] <= end_record)]
 
 # TODO: 操業時間中に値が0(zero_count)の時がいくつあるか数える(count)
 
