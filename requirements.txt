@@ -1,0 +1,7 @@
+###### Requirements without Version Specifiers ######`
+datetime
+timedelta
+glob
+csv
+os
+pandas

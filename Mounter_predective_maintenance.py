@@ -39,8 +39,8 @@ value_not_zero = df[df[‘Value’] > 0]
 start_record = value_not_zero[0:1]
 end_record = value_not_zero[-2:-1]
 
-start_time = value_not_zero.iloc[0:1, 2:3]
-end_time = value_not_zero.iloc[-2:-1, 2:3]
+start_time = start_record['TIME']
+end_time = end_record['TIME']
 
 # TODO: ②後のdfから操業時間の間のdfを抽出(df[‘始業’:’終業’])またはindexで指定。
 
