@@ -10,11 +10,12 @@ import pandas as pd
 # "昨日"の文字列を定義
 today = datetime.today()
 yesterday = today - timedelta(days=1)
-yesterday_str = datetime.strftime(yesterday, '%y%m%d')
+#yesterday_str = datetime.strftime(yesterday, '%y%m%d')
+yesterday_str = "200512"
 
 # フォルダ中のパスを取得
 # DATA_PATH = "./SampleCode_20200325/DIOデータ分析/csv/" - 本番の値
-DATA_PATH = "" # 仮の値
+DATA_PATH = "./csv/" # 仮の値
 Yesterday_Datas = glob.glob('{}*{}*.csv'.format(DATA_PATH,yesterday_str))
 print(Yesterday_Datas)
 
@@ -43,9 +44,11 @@ end_record = value_not_zero['TIME'].values[-1]
 # TODO: ②後のdfから操業時間の間のdfを抽出(df[‘始業’:’終業’])またはindexで指定。
 
 target_df = df[(df['TIME'] >= start_record) & (df['TIME'] <= end_record)]
+print(target_df)
 
 # TODO: 操業時間中に値が0(zero_count)の時がいくつあるか数える(count)
-
+zero_count = (target_df["Value"] == 0).sum()
+print(zero_count)
 
 # 値が0の回数が1回以上あれば異常なし。0回であればエアー漏れの恐れあり。
 if zero_count >= 1:
