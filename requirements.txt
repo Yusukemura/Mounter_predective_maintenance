@@ -1,7 +1,7 @@
-###### Requirements without Version Specifiers ######`
-datetime
-timedelta
-glob
-csv
-os
-pandas
+DateTime==4.3
+numpy==1.18.5
+pandas==1.0.4
+python-dateutil==2.8.1
+pytz==2020.1
+six==1.15.0
+zope.interface==5.1.0
